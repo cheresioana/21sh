@@ -1,0 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   iter_fd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: icheres <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/15 12:58:02 by icheres           #+#    #+#             */
+/*   Updated: 2016/04/17 16:52:01 by icheres          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+int		is_special_comm(char *shit)
+{
+	if (ft_strcmp(shit, "3>&1") != 0 && ft_strcmp(shit, "2>&1") != 0 &&
+			ft_strcmp(shit, "1>&2") != 0 && ft_strcmp(shit, "3>&2") != 0 &&
+			ft_strcmp(shit, ">") != 0 && ft_strcmp(shit, ">>") != 0 &&
+			ft_strcmp(shit, "<") != 0 && ft_strcmp(shit, "<<") != 0 &&
+			ft_strcmp(shit, "1>>") != 0 && ft_strcmp(shit, "2>") != 0 &&
+			ft_strcmp(shit, "2>>") != 0 && ft_strcmp(shit, "1>") != 0 &&
+			ft_strcmp(shit, "&>") != 0 && ft_strcmp(shit, "&>>") != 0 &&
+			ft_strcmp(shit, "|") != 0)
+		return (0);
+	return (1);
+}
+
+void	iter_comm(t_nlist *list, char **envp, char **paths)
+{
+	int		fd[2];
+	int		fp[2];
+	int		in_fd;
+	int		fd0, fd1, fd3;
+	t_sp s;
+	pid_t pid1;
+
+	
+	processing_list(list);
+	printf("??\n");
+	aff_meganlist(list);
+	/*pipe(fd);
+	if ((pid1 = fork()) == 0)
+	{
+		fd0 = open(list->next->next->command , O_RDONLY, 0);
+		dup2(fd0, 0);
+		close(fd0);
+		dup2(fd[1], 1);
+		child(envp, paths, list->command);
+	}
+	else waitpid(pid1, &s.status, WNOHANG);
+	if ((pid1 = fork()) == 0)
+	{	
+		fd1 = open(list->next->next->next->next->command, O_CREAT | O_WRONLY, S_IRWXU);
+		//dup2(fd1, 0);
+		dup2(fd[0], STDIN_FILENO);
+		dup2(fd1, STDOUT_FILENO);
+		close(fd1);
+		child(envp, paths, list->command);
+	}
+	else waitpid(pid1, &s.status, WNOHANG);
+ 
+	if (fork() == 0)
+	{
+		dup2(fd[0], STDIN_FILENO);
+		dup2
+		child(envp, paths, list->next->next->next->next->next->next->command);
+		}
+	else waitpid(pid1, &s.status, WNOHANG);
+*/
+
+}
